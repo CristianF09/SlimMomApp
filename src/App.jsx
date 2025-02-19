@@ -1,0 +1,58 @@
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { SharedLayout } from './components/SharedLayout/SharedLayout';
+import { HomePage } from 'pages/Home/HomePage';
+import { DiaryPage } from 'pages/Diary/DiaryPage';
+import { CalculatorPage } from 'pages/Calculator/CalculatorPage';
+import { LoginPage } from 'pages/Login/LoginPage';
+import { RegistrationPage } from 'pages/Registration/RegistrationPage';
+import { PageNotFound } from 'pages/PageNotFound/PageNotFound';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
+import { RestrictedRoute } from './components/RestrictedRoute/RestrictedRoute';
+import { theme } from './components/Theme/Theme';
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route>
+          <Route path="/" element={<SharedLayout />}>
+            <Route
+              path="/"
+              index
+              element={
+                <RestrictedRoute
+                  redirectTo="/calculator"
+                  component={HomePage}
+                />
+              }
+            />
+            <Route
+              path="/diary"
+              element={
+                <PrivateRoute redirectTo="/login" component={DiaryPage} />
+              }
+            />
+            <Route
+              path="/calculator"
+              element={
+                <PrivateRoute redirectTo="/login" component={CalculatorPage} />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/diary" component={LoginPage} />
+              }
+            />
+            <Route path="/registration" element={<RegistrationPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Route>
+      </Routes>
+    </ThemeProvider>
+  );
+}
+
+export default App;
