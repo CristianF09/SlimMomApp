@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { loaderReducer } from './loader/loaderSlice';
+import authReducer from './auth/authSlice';
+import diaryReducer from './diary/diarySlice';
+import calculatorReducer from './calculator/calculatorSlice';
 
 export const store = configureStore({
   reducer: {
-    loader: loaderReducer,
-    // other reducers
+    auth: authReducer,
+    diary: diaryReducer,
+    calculator: calculatorReducer,
   },
 });
