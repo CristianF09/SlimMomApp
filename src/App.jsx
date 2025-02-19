@@ -77,6 +77,7 @@ const router = createBrowserRouter([
 });
 
 function App() {
+  // Remove any <BrowserRouter> here
   return <RouterProvider router={router} />;
 }
 

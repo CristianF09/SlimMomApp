@@ -11,6 +11,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        {/* No BrowserRouter here */}
         <App />
       </PersistGate>
     </Provider>
