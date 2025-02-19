@@ -1,50 +1,12 @@
-import { List } from '../DiaryProductList/DiaryProductlist.styled';
+import { List } from './DiaryProductList.styled';  // Corrected import for styled components
 import { useGetEntry } from '../../hooks/useGetEntry';
-import { DiaryProductsListItem } from 'components/DiaryProductListItem/DiaryProductListItem';
+import { DiaryProductsListItem } from '../DiaryProductListItem/DiaryProductListItem';  // Fixed relative import
 
 export const DiaryProductsList = () => {
   const { entry } = useGetEntry();
 
   return (
     <List>
-      {/* className={products.length > 4 ? null : "hidden"} */}
-      {/* {products.length !== 0 ? (
-        products.map(product => {
-          return (
-            <DiaryProductsListItem
-              key={product._id}
-              id={product._id}
-              name={product.productName}
-              grams={product.productWeight}
-              calories={product.productCalories}
-            />
-          );
-        })
-      ) : (
-        <NoProductsContainer>
-          {!mobile && <HiArrowUp
-            style={{
-              width: '64px',
-              height: '64px',
-              color: 'black',
-            }}
-          />}
-          <p
-            style={{
-              color: 'black',
-            }}
-          >
-            Let's add some products!
-          </p>
-          {mobile && <HiArrowUp
-            style={{
-              width: '64px',
-              height: '64px',
-              color: 'black',
-            }}
-          />}
-        </NoProductsContainer>
-      )} */}
       {entry
         .slice()
         .reverse()

@@ -12,3 +12,4 @@ export const Box = styled.div`
   ${position};
   ${grid};
 `;
+export default Box;

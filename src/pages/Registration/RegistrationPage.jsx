@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { Input, List } from 'components/Form/Form.styled';
-import { Button } from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import { signup } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
-//prettier-ignore
-import { ButtonWrapper, H2, Wrapper } from '../../components/RegisterPage/RegisterPage.styled';
-import { WrapperWithFruits } from 'components/RegisterPage/RegisterPage.styled';
-import { routes } from 'components/Routes/routes';
+import { signup } from '../../redux/auth/operations';
+import { Input, List } from '../../components/Form/Form.styled';
+import { Button } from '../../components/Button/Button';
+import { routes } from '../../components/Routes/routes';
+import {
+  ButtonWrapper,
+  H2,
+  Wrapper,
+  WrapperWithFruits,
+} from '../../components/RegisterPage/RegisterPage.styled';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -28,9 +31,11 @@ const RegistrationPage = () => {
     dispatch(signup(data));
     form.reset();
   };
+
   const handleClick = () => {
     navigate(routes.login);
   };
+
   const handleShowPassword = () => {
     setIsShowPassword(!isShowPassword);
   };
@@ -44,17 +49,13 @@ const RegistrationPage = () => {
             <li>
               <label>
                 <Input type="name" name="name" placeholder="Name *" />
-                {/* <ErrorMessage name="name" component={Error} /> */}
               </label>
             </li>
-
             <li>
               <label>
                 <Input type="email" name="email" placeholder="Email *" />
-                {/* <ErrorMessage name="email" component={Error} /> */}
               </label>
             </li>
-
             <li>
               <label style={{ position: 'relative' }}>
                 <Input
@@ -84,7 +85,6 @@ const RegistrationPage = () => {
                     }}
                   />
                 )}
-                {/* <ErrorMessage name="password" component={Error} /> */}
               </label>
             </li>
           </List>
@@ -104,4 +104,4 @@ const RegistrationPage = () => {
   );
 };
 
-export { RegistrationPage };
+export default RegistrationPage;

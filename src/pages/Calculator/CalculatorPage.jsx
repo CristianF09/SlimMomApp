@@ -1,16 +1,14 @@
-import { Box } from 'components/Box';
-import { WeightForm } from 'components/Form/Form';
 import React, { useState } from 'react';
+import { Box } from '../../components/Box';
+import { WeightForm } from '../../components/Form/Form';
+import { useAuth } from '../../hooks/useAuth';
+import Modal from '../../components/Modal/Modal';
+import { RightSideBar } from '../../components/RightSideBar/RightSideBar';
 import {
   CalculatorPageWrapper,
   H2,
   WrapperAll,
 } from '../../components/CalculatorPage/CalculatorPage.styled';
-// import { getUserInfo } from 'redux/authSelectors';
-import { useAuth } from 'hooks/useAuth';
-// import { useSelector } from 'react-redux';
-import Modal from 'components/Modal/Modal';
-import { RightSideBar } from '../../components/RightSideBar/RightSideBar';
 
 const CalculatorPage = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -34,7 +32,7 @@ const CalculatorPage = () => {
         {isModalOpened && (
           <Modal onClose={onModalClose} userParams={userParams} />
         )}
-        <Box style={{maxWidth:'1280px', margin:'0 auto'}}>
+        <Box style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <H2>Calculate your daily calorie intake right now</H2>
           <WeightForm
             initialValues={userInfo}
@@ -47,4 +45,5 @@ const CalculatorPage = () => {
     </WrapperAll>
   );
 };
-export { CalculatorPage };
+
+export default CalculatorPage;

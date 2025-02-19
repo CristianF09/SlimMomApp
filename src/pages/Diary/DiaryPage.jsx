@@ -1,17 +1,17 @@
+import React, { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Box } from '../../components/Box';
+import { DiaryAddProductForm } from '../../components/DiaryAddProductForm/DiaryAddProductForm';
+import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
+import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
+import { RightSideBar } from '../../components/RightSideBar/RightSideBar';
+import { DiaryModal } from '../../components/DiaryModal/DiaryModal';
+import { Button } from '../../components/DiaryPage/DiaryPage.styled';
+import AddIcon from '../../images/svg/add.svg';
 import {
   Wrapper,
   WrapperAll,
 } from '../../components/DiaryPage/DiaryPage.styled';
-import { DiaryAddProductForm } from 'components/DiaryAddProductForm/DiaryAddProductForm';
-import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
-import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
-import { RightSideBar } from 'components/RightSideBar/RightSideBar';
-import React, { useState } from 'react';
-import { DiaryModal } from 'components/DiaryModal/DiaryModal';
-import { useMediaQuery } from 'react-responsive';
-import { Button } from 'components/DiaryPage/DiaryPage.styled';
-import AddIcon from '../../images/svg/add.svg';
-import { Box } from 'components/Box';
 
 const body = document.querySelector('body');
 
@@ -34,7 +34,7 @@ const DiaryPage = () => {
       <Wrapper>
         <DiaryDateCalendar />
         {!mobile && <DiaryAddProductForm />}
-        <Box style={{textAlign:'center'}}>
+        <Box style={{ textAlign: 'center' }}>
           <DiaryProductsList />
           {mobile && (
             <Button onClick={() => onModalOpen()}>
@@ -48,4 +48,5 @@ const DiaryPage = () => {
     </WrapperAll>
   );
 };
-export { DiaryPage };
+
+export default DiaryPage;

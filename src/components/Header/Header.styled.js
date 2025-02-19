@@ -10,12 +10,11 @@ export const HeaderStyled = styled.header`
   border-bottom: 2px solid #e0e0e0;
 
   @media (max-width: 425px) {
-    position: relative; // set position relative in order to see header when modal on phone is opened
+    position: relative; // Ensures header is visible when modal is open
     z-index: 22;
   }
   @media (min-width: 768px) {
     padding: 20px 32px;
-    /* width: calc(100% - 32px); */
   }
   @media (min-width: 1024px) {
     position: absolute;
@@ -29,17 +28,12 @@ export const HeaderStyled = styled.header`
     width: calc(100% - 32px);
     margin: 0 auto;
   }
-  /* @media (min-width: 1280px) {
-    width: 1280px;
-  } */
 `;
 
 export const Logo = styled.img`
   height: 44px;
   filter: ${p => p.theme.colors.filter};
 
-  @media (min-width: 426px) and (max-width: 1023px) {
-  }
   @media (min-width: 1024px) {
     height: 66px;
     margin-right: 40px;
@@ -51,10 +45,10 @@ export const BtnList = styled.ul`
   gap: 16px;
   top: -4px;
 
-  @media (min-width: 426px) and (max-width: 1023px) {
-  }
   @media (min-width: 1024px) {
     position: relative;
+    align-items: flex-end;
+    
     &:before {
       content: '';
       position: absolute;
@@ -64,7 +58,6 @@ export const BtnList = styled.ul`
       width: 2px;
       background-color: #e0e0e0;
     }
-    align-items: flex-end;
   }
 `;
 
@@ -76,18 +69,12 @@ export const HeaderBtn = styled.button`
   font-size: ${p => p.theme.fontSizes[0]};
   text-align: right;
   letter-spacing: 0.04em;
-
-  background: ${p => p.theme.colors.white};
   text-transform: uppercase;
-
-  @media (min-width: 426px) and (max-width: 1023px) {
-  }
-  @media (min-width: 1024px) {
-  }
+  background: ${p => p.theme.colors.white};
 `;
 
 export const StyledLink = styled(NavLink)`
-  padding: 0px;
+  padding: 0;
   border: none;
   font-size: 14px;
   text-align: right;
@@ -106,17 +93,10 @@ export const StyledLink = styled(NavLink)`
     color: #212121;
   }
 
-  @media (min-width: 426px) and (max-width: 1023px) {
-  }
   @media (min-width: 1024px) {
-    padding: 0;
-    border: ${p => p.theme.borders.none};
     font-family: ${p => p.theme.fonts.tertiary};
     line-height: ${p => p.theme.lineHeights.body};
     font-size: ${p => p.theme.fontSizes[0]};
-    text-align: right;
-    letter-spacing: 0.04em;
-
     text-transform: uppercase;
     background: transparent;
     color: ${p => p.theme.colors.gray};
@@ -127,5 +107,22 @@ export const StyledLink = styled(NavLink)`
     &:focus {
       color: ${p => p.theme.colors.black};
     }
+  }
+`;
+
+// 🔥 NEW: Styled Component for Hamburger & Close Icons
+export const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: black;
   }
 `;
