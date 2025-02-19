@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.84f63284.css",
+    "main.js": "/static/js/main.ae1da4b9.js",
+    "static/media/Strawberry@2x.png": "/static/media/Strawberry@2x.810e8754ff3a5ece844c.png",
+    "static/media/banana@2x.png": "/static/media/banana@2x.c9bae4c1d788895e7e32.png",
+    "static/media/leaves@2x.png": "/static/media/leaves@2x.0ca97f526efa230ccff5.png",
+    "static/media/banana.png": "/static/media/banana.f24511a2d04fd6c36038.png",
+    "static/media/Strawberry.png": "/static/media/Strawberry.1c284af98f1ce377ad10.png",
+    "static/media/leaves.png": "/static/media/leaves.1110806d7ae1e54afcd7.png",
+    "static/media/leaf-desk.png": "/static/media/leaf-desk.07ec7143c40752d1b8ad.png",
+    "static/media/Vector@2x.png": "/static/media/Vector@2x.fc7e5303b42dbcc105cb.png",
+    "static/media/logoDesktop@2x.png": "/static/media/logoDesktop@2x.c1f856addb611cbab936.png",
+    "index.html": "/index.html",
+    "static/media/calendar.svg": "/static/media/calendar.f07abe41ca1bac88f7e6c38064355356.svg",
+    "static/media/cross.svg": "/static/media/cross.8cdb920ca8331504fc3379915d48c780.svg",
+    "static/media/add.svg": "/static/media/add.abbad4ece4830b88ccd984afbf9c2a1f.svg",
+    "main.84f63284.css.map": "/static/css/main.84f63284.css.map",
+    "main.ae1da4b9.js.map": "/static/js/main.ae1da4b9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84f63284.css",
+    "static/js/main.ae1da4b9.js"
+  ]
+}

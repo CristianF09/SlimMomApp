@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { HomePage } from './pages/Home/HomePage';
@@ -12,61 +12,72 @@ import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from './components/RestrictedRoute/RestrictedRoute';
 import { theme } from './components/Theme/Theme';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <ThemeProvider theme={theme}>
+        <SharedLayout>
+          <Outlet />
+        </SharedLayout>
+      </ThemeProvider>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <RestrictedRoute redirectTo="/calculator">
+            <HomePage />
+          </RestrictedRoute>
+        )
+      },
+      {
+        path: '/login',
+        element: (
+          <RestrictedRoute redirectTo="/diary">
+            <LoginPage />
+          </RestrictedRoute>
+        )
+      },
+      {
+        path: '/registration',
+        element: (
+          <RestrictedRoute redirectTo="/diary">
+            <RegistrationPage />
+          </RestrictedRoute>
+        )
+      },
+      {
+        path: '/diary',
+        element: (
+          <PrivateRoute redirectTo="/login">
+            <DiaryPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: '/calculator',
+        element: (
+          <PrivateRoute redirectTo="/login">
+            <CalculatorPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: '*',
+        element: <PageNotFound />
+      }
+    ]
+  }
+], {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }
+});
+
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          {/* Public routes */}
-          <Route
-            index
-            element={
-              <RestrictedRoute redirectTo="/calculator">
-                <HomePage />
-              </RestrictedRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/diary">
-                <LoginPage />
-              </RestrictedRoute>
-            }
-          />
-          <Route
-            path="/registration"
-            element={
-              <RestrictedRoute redirectTo="/diary">
-                <RegistrationPage />
-              </RestrictedRoute>
-            }
-          />
-
-          {/* Private routes */}
-          <Route
-            path="/diary"
-            element={
-              <PrivateRoute redirectTo="/login">
-                <DiaryPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/calculator"
-            element={
-              <PrivateRoute redirectTo="/login">
-                <CalculatorPage />
-              </PrivateRoute>
-            }
-          />
-
-          {/* 404 catch-all */}
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
-    </ThemeProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
