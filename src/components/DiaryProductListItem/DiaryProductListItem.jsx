@@ -5,7 +5,7 @@ import { deleteEntry } from '../../redux/entry/operations';
 import { Icon, Item } from './DiaryProductListItem.styled';
 import { ReactComponent as CrossIcon } from '../../images/svg/cross.svg';
 
-export const DiaryProductListItem = ({ _id, product }) => {
+const DiaryProductListItem = ({ _id, product }) => {
   const { title, grams, calories } = product;
   const dispatch = useDispatch();
 
@@ -33,3 +33,5 @@ DiaryProductListItem.propTypes = {
     calories: PropTypes.number.isRequired,
   }).isRequired,
 };
+
+export default DiaryProductListItem;

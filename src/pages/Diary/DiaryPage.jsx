@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Box } from '../../components/Box';
+import DiaryProductList from '../../components/DiaryProductList/DiaryProductList';
 import { DiaryAddProductForm } from '../../components/DiaryAddProductForm/DiaryAddProductForm';
 import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
-import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
 import { RightSideBar } from '../../components/RightSideBar/RightSideBar';
 import { DiaryModal } from '../../components/DiaryModal/DiaryModal';
 import { Button } from '../../components/DiaryPage/DiaryPage.styled';
@@ -35,7 +35,7 @@ const DiaryPage = () => {
         <DiaryDateCalendar />
         {!mobile && <DiaryAddProductForm />}
         <Box style={{ textAlign: 'center' }}>
-          <DiaryProductsList />
+          <DiaryProductList />
           {mobile && (
             <Button onClick={() => onModalOpen()}>
               <img src={AddIcon} alt="add product" />

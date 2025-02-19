@@ -4,6 +4,7 @@ import { WeightForm } from '../../components/Form/Form';
 import Modal from '../../components/Modal/Modal';
 import { H2, WrapperWithFruits } from './HomePage.styled';
 
+
 export const HomePage = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [userParams, setUserParams] = useState(null);

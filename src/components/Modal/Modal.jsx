@@ -8,7 +8,7 @@ import {
   ModalWindow,
   Overlay,
 } from './Modal.styled';
-import { LoaderNew } from 'components/LoaderNew/LoaderNew';
+import { LoaderNew } from '../../components/LoaderNew/LoaderNew';
 import { selectCalorieState } from '../../redux/calorie/selectors';
 import { useSelector } from 'react-redux';
 

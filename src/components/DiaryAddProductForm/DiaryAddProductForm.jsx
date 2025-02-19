@@ -6,10 +6,10 @@ import * as yup from 'yup';
 import { useMediaQuery } from 'react-responsive';
 import { searchProducts } from '../../redux/product/productSlice';
 import { fetchProducts } from '../../redux/product/operations';
-import { addEntry } from '../../redux/entry/operation';
+import { addEntry } from '../../redux/entry/operations';
 import { useSearch } from '../../hooks/useSearch';
-import { Box } from 'components/Box';
-import { DiarySearchItem } from 'components/DiarySearch/DiarySearchItem';
+import { Box } from '../Box';
+import { DiarySearchItem } from '../DiarySearch/DiarySearchItem';
 import {
   Button,
   FormWrapper,

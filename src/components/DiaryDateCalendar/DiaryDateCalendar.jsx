@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import CalendarIcon from '../../images/svg/calendar.svg';
 import { useDispatch } from 'react-redux';
-import { fetchEntriesByDate } from '../../redux/entry/operation';
+import { fetchEntriesByDate } from '../../redux/entry/operations';
 import moment from 'moment';
 
 export const DiaryDateCalendar = () => {

@@ -1,6 +1,6 @@
-import { Button } from 'components/Button/Button';
-import { ButtonWrapper } from 'components/Form/Form.styled';
-import { InnerInfo, ModalWindow, Overlay } from 'components/Modal/Modal.styled';
+import { Button } from '../Button/Button'; // Fixed path
+import { ButtonWrapper } from '../Form/Form.styled'; // Fixed path
+import { ModalWindow, Overlay, InnerInfo } from '../Modal/Modal.styled';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useMediaQuery } from 'react-responsive';
@@ -15,17 +15,16 @@ export const ExitModal = ({ onClose, handleLogout }) => {
       onClose(false);
     }
   };
+  
   return createPortal(
     <Overlay onClick={handleBackDropClick}>
       <ModalWindow
         style={
-          isMobile
-            ? {
-                paddingTop: '30px',
-                height: '90vh',
-                transform: 'translate(-50%,-62%)',
-              }
-            : { paddingTop: '50px' }
+          isMobile ? {
+            paddingTop: '30px',
+            height: '90vh',
+            transform: 'translate(-50%,-62%)',
+          } : { paddingTop: '50px' }
         }
       >
         <InnerInfo>

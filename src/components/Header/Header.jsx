@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
 import { useAuth } from '../../hooks/useAuth';
-
 import {
   BtnList,
   HeaderStyled,
@@ -12,8 +11,8 @@ import {
   StyledLink,
   IconButton
 } from './Header.styled';
-import { BottomSection } from '../UserInfo/UserInfo'; // Fixed import path
-import { Menu } from '../Navigation/Navigation'; // Fixed import path
+import { BottomSection } from './UserInfo/UserInfo'; // Fixed path
+import { Menu } from './Navigation/Navigation'; // Fixed path
 
 // Import logos
 import logoMobile from '../../images/logo/logoMobile.png';
@@ -84,4 +83,4 @@ const Header = () => {
   );
 };
 
-export { Header };
+export default Header;

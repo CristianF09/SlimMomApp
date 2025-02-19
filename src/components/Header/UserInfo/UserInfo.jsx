@@ -7,7 +7,7 @@ import { Exit, Name, Section } from './UserInfo.styled';
 // import Switch from 'react-switch';
 // import { FaTree } from 'react-icons/fa';
 // import { GiFruitBowl } from 'react-icons/gi';
-import { ExitModal } from 'components/ExitModal/ExitModal';
+import { ExitModal } from '../../ExitModal/ExitModal';
 
 export const BottomSection = ({ name }) => {
   // const { setValue } = useContext(ThemeContext);

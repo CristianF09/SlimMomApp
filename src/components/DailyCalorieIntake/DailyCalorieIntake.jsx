@@ -1,4 +1,4 @@
-import { routes } from 'components/Routes/routes';
+import { routes } from '../Routes/routes';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BOX, ButtonForm, ButtonWrapper, H1, H2, H4, LI, ModalWrapper } from './DailyCalorieIntake.styled';
 
