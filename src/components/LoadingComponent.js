@@ -1,14 +1,13 @@
-// LoadingComponent.js
 import React, { useEffect, useReducer } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-// Arrow Rotation Animation
+// Corrected rotation animation starting from upward position
 const rotate = keyframes`
-  0% {
-    transform: rotate(0deg);
+  from {
+    transform: rotate(90deg);
   }
-  100% {
-    transform: rotate(360deg);
+  to {
+    transform: rotate(450deg);
   }
 `;
 
@@ -16,14 +15,11 @@ const rotate = keyframes`
 const LoaderWrapper = styled.div`
   position: relative;
   min-height: 100vh;
-  background-color: ${({ isLoading }) =>
-    isLoading ? "#FFF3E0" : "#ffffff"}; /* Soft orange when loading */
+  background-color: ${({ isLoading }) => 
+    isLoading ? "#FFF3E0" : "#ffffff"};
   display: flex;
   justify-content: center;
-  align-items: ${({ isLoading }) =>
-    isLoading ? "flex-start" : "center"}; /* Center content, loader at top */
-  padding-top: ${({ isLoading }) =>
-    isLoading ? "10%" : "0"}; /* Adjust spinner positioning */
+  align-items: center; /* Always center content */
   transition: background-color 0.5s ease-in-out;
 `;
 
@@ -31,43 +27,33 @@ const LoaderWrapper = styled.div`
 const ArrowContainer = styled.div`
   display: ${({ isLoading }) => (isLoading ? "block" : "none")};
   animation: ${rotate} 1s linear infinite;
-  transform: rotate(90deg); /* Start with arrow pointing up */
 `;
 
-// Arrow styles
+// Improved arrow sizing with fixed units
 const Arrow = styled.div`
   width: 0;
   height: 0;
-  border-left: 5vw solid transparent; /* Use viewport width for responsiveness */
-  border-right: 5vw solid transparent; /* Use viewport width for responsiveness */
-  border-bottom: 10vh solid #f57c00; /* Use viewport height for responsiveness */
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid #f57c00;
 `;
 
 // Main Loading Component
 const LoadingComponent = ({ children }) => {
-  const initialState = { isLoading: true };
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "SHOW_LOADER":
-        return { ...state, isLoading: true };
-      case "HIDE_LOADER":
-        return { ...state, isLoading: false };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case "SHOW_LOADER": return { ...state, isLoading: true };
+        case "HIDE_LOADER": return { ...state, isLoading: false };
+        default: return state;
+      }
+    },
+    { isLoading: true }
+  );
 
   useEffect(() => {
     dispatch({ type: "SHOW_LOADER" });
-
-    // Simulate an API call or loading process
-    const timer = setTimeout(() => {
-      dispatch({ type: "HIDE_LOADER" });
-    }, 3000); // Simulated loading for 3 seconds
-
+    const timer = setTimeout(() => dispatch({ type: "HIDE_LOADER" }), 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -77,8 +63,10 @@ const LoadingComponent = ({ children }) => {
         <Arrow />
       </ArrowContainer>
 
-      {/* Main content area */}
-      {!state.isLoading && <div style={{ padding: "20px" }}>{children}</div>}
+      {/* Always render children but control visibility */}
+      <div style={{ display: state.isLoading ? 'none' : 'block', padding: '20px' }}>
+        {children}
+      </div>
     </LoaderWrapper>
   );
 };

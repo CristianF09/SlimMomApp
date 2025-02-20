@@ -1,58 +1,38 @@
 import React, { useState } from 'react';
-
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import { Input, List } from '../../components/Form/Form.styled';
 import { Button } from '../../components/Button/Button';
-
-import {
-  ButtonWrapper,
-  H2,
-  Wrapper,
-  WrapperWithFruits,
-} from '../../components/RegisterPage/RegisterPage.styled';
-
+import { ButtonWrapper, H2, Wrapper, WrapperWithFruits } from '../../components/RegisterPage/RegisterPage.styled';
 import { signin } from '../../redux/auth/operations';
-
 import { routes } from '../../components/Routes/routes';
-
-// const schema = yup.object().shape({
-//   email: yup.string().email().required('Email is required field'),
-//   password: yup
-//     .string()
-//     .min(6, 'Password must be more than or equal to 6 letters')
-//     .max(16, 'Pame must be more than or equal to 16 letters')
-//     .required('Password is required field'),
-// });
-
-// const initialValues = {
-//   email: '',
-//   password: '',
-// };
+import TestLogin from '../../components/TestLogin/TestLogin';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    dispatch(
-      signin({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
+    
+    if (!email || !password) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    dispatch(signin({ email, password }));
     form.reset();
   };
 
   const handleClick = () => {
     navigate(routes.registration);
   };
+
   const handleShowPassword = () => {
     setIsShowPassword(!isShowPassword);
   };
@@ -70,9 +50,8 @@ const LoginPage = () => {
                   name="email"
                   placeholder="Email *"
                   autoComplete="off"
+                  required
                 />
-                {/* <ErrorMessage name="email" component={Error} />
-                  {<Error>Email or password is wrong</Error>} */}
               </label>
             </li>
 
@@ -83,6 +62,7 @@ const LoginPage = () => {
                   name="password"
                   placeholder="Password *"
                   maxLength="16"
+                  required
                 />
                 {isShowPassword ? (
                   <AiFillEyeInvisible
@@ -92,6 +72,7 @@ const LoginPage = () => {
                       top: '0px',
                       left: '250px',
                       color: '#FC842D',
+                      cursor: 'pointer'
                     }}
                   />
                 ) : (
@@ -102,11 +83,10 @@ const LoginPage = () => {
                       top: '0px',
                       left: '250px',
                       color: '#FC842D',
+                      cursor: 'pointer'
                     }}
                   />
                 )}
-                {/* <ErrorMessage name="password" component={Error} />
-                  {<Error>Email or password is wrong</Error>} */}
               </label>
             </li>
           </List>
@@ -121,9 +101,11 @@ const LoginPage = () => {
             </div>
           </ButtonWrapper>
         </form>
+
+        {process.env.NODE_ENV === 'development' && <TestLogin />}
       </Wrapper>
     </WrapperWithFruits>
   );
 };
 
-export { LoginPage };
+export default LoginPage;

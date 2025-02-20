@@ -1,46 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logout, signin, signup } from './operations.js';
+import testUsers from '../../data/testUsers.json';
 
-const handleOnPending = state => {
-  state.isLoggedIn = false;
-};
+const findTestUser = (email) => 
+  testUsers.testUsers.find(user => user.email === email);
 
-const handleOnReject = (state, action) => {
-  state.isLoggedIn = false;
-  state.error = action.payload;
+const initialState = {
+  user: null,
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    user: {
-      email: '',
-      name: '',
-      token: '',
+  initialState,
+  reducers: {
+    setCredentials: (state, action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
     },
-    isLoggedIn: false,
-    error: null,
-  },
-  extraReducers: builder => {
-    builder
-      .addCase(signup.pending, handleOnPending)
-      .addCase(signup.fulfilled, (state, action) => {
-      })
-      .addCase(signup.rejected, handleOnReject)
-      .addCase(signin.pending, handleOnPending)
-      .addCase(signin.fulfilled, (state, action) => {
+    testLogin: (state, action) => {
+      const testUser = findTestUser(action.payload);
+      if (testUser) {
+        state.user = {
+          email: testUser.email,
+          name: testUser.name,
+          dailyCalorieIntake: testUser.dailyCalorieIntake
+        };
+        state.token = testUser.token;
         state.isLoggedIn = true;
-        state.user = action.payload;
-        state.error = null;
-      })
-      .addCase(signin.rejected, handleOnReject)
-      .addCase(logout.pending, handleOnPending)
-      .addCase(logout.fulfilled, (state, action) => {
-        state.isLoggedIn = false;
-        state.user = '';
-        state.error = null;
-      });
-  },
+      }
+    }
+  }
 });
 
+export const { setCredentials, testLogin } = authSlice.actions;
 export const authReducer = authSlice.reducer;
+export default authSlice.reducer;
